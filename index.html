@@ -37,10 +37,14 @@
                     if (isIPHONE || isIPAD) {
                         if (confirm(_APP_INSTALL_CONFIRM)) { window.location.href = _APP_INSTALL_URL_IOS; }
                     } else if (isANDROID) {
-                        if (confirm(_APP_INSTALL_CONFIRM)) { window.location.href = _APP_INSTALL_URL_ADROID; }
+                        if (confirm(_APP_INSTALL_CONFIRM)) { window.location.href = _APP_INSTALL_URL_ANDROID; }
                     }
                 }
             }, 500);
+        }
+
+        function checkApp() {
+            
         }
 //]]>
     </script>
@@ -48,7 +52,7 @@
 
 <body>
 
-    <a href="naversearchapp://" onclick="executeApp(this.href);return false;">네이버앱 실행</a><br />
+    <a href="naversearchapp://" >네이버앱 실행</a><br />
 
     <div id="applinkDiv"></div>
 
