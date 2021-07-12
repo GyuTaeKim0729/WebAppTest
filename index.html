@@ -1,46 +1,77 @@
-    <script>
+<!DOCTYPE html>
+<html>
 
-        // 앱 스키마 uri
-        var launchAppUrl = 'naversearchapp://'; // 앱 스키마
-        var timer;	// 타이머
-        var schInterval; // 인터벌
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
 
-        // 인터벌, 타이머 삭제
-        function clearTimer() {
-            clearInterval(schInterval);
-            clearTimeout(timer);
-        }
+        var schemeUrl = 'kakaolink://';
+        var redirectUrl = 'http://www.kakao.com/';
 
-        // 인터벌 마다 동작할 기능
-        function intervalSch() {
-            // 매 인터벌 마다 웹뷰가 활성화 인지 체크
-            if (document.webkitHidden || document.hidden) {// 웹뷰 비활성화
-                clearTimer();// 앱이 설치되어있을 경우 타이머 제거
-                alert("앱이 설치 되어 있습니다.");
-            } else {	// 웹뷰 활성화
-                console.log("타이머 동작");
+        window.closeWindow = (function () {
+            var isWindowRef = null;
+            setInterval(function () {
+                // 새로열린 창이 닫혔을 때 다시 버튼 클릭 시 동작이 실행이 되어야 하므로 해당 객체를 삭제
+                isWindowRef = (isWindowRef && isWindowRef.window) ? isWindowRef : null;
+            }, 1000);
+
+            return function (windowRef, time) {
+                //  새로열린 Window에서 백버튼 누를 시 해당 함수가 계속 호출되는 무한루프 방지
+                if (isWindowRef == null) {
+                    isWindowRef = windowRef;
+
+                    setTimeout(function () {
+                        try {
+                            // Custom Scheme 이 실행되지 않고 잘못된 페이지가 노출된 상태에서
+                            // 아래의 코드 실행 시 Security Error 발생
+                            windowRef.location == 'undefind';
+
+                            // Custom Scheme 이 실행되었다면 앱 종료 후 해당 tab 을 닫는다.
+                            windowRef.close();
+
+                        } catch (e) {
+                            windowRef.location.href = redirectUrl;
+                        }
+                    }, time);
+                    return true;
+                }
+            }
+        })();
+
+        function runApp() {
+
+            //            Check Chrome for Android Version is V25
+            //            https://developer.chrome.com/multidevice/android/intents - Android Chrome Version
+            //            http://en.wikipedia.org/wiki/Google_Chrome_for_Android - Chrome WebKit Version
+            if (parseFloat(navigator.userAgent.match(/WebKit\/[^\ ]*/)[0].toLowerCase().substr(7)) > 537.22) {
+                var openWindow = window.open('./openWindow.html#' + schemeUrl);
+
+            } else {
+                $('<iframe></iframe>', {
+                    src: schemeUrl,
+                    width: 0,
+                    height: 0,
+                    id: 'checkframe'
+                }).css('border', '0').appendTo('body');
+
+                setTimeout(function () {
+                    if ($("#checkframe").contents().find("body").html() == undefined) {
+                        window.location.href = redirectUrl;
+                    }
+                }, 1000);
             }
         }
-
-    $(document).ready(function () {
-        $("button").click(function () {
-
-            // 앱 실행(iOS인 경우)
-            location.href = launchAppUrl;
-
-            // 앱이 설치 되어있는지 체크
-            schInterval = setInterval(intervalSch, 500);
-
-            timer = setTimeout(function () {
-                alert('앱이 설치되어있지 않습니다.');
-                clearInterval(schInterval);
-            }, 2000);
-
-        });
-    });
-</script>
+    </script>
+</head>
 
 <body>
-    <button>button</button>
+
+    <a href="javascript:runApp();">앱 실행하기</a>
+
 </body>
 
+</html>
