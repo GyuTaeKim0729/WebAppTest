@@ -15,7 +15,7 @@
     function init() {
         location.href = launchAppUrl;
 
-        schInterval = setInterval(intervalSch, 500);
+        //schInterval = setInterval(intervalSch, 500);
 
         timer = setTimeout(function () {
             alert('앱이 설치되어있지 않습니다.');
@@ -28,7 +28,7 @@
     }
 
     function clearTimer() {
-        clearInterval(schInterval);
+        //clearInterval(schInterval);
         clearTimeout(timer);
     }
 
