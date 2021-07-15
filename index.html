@@ -21,8 +21,6 @@
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        
-
 
         info = setTimeout(function () {
             location.href = launchAppUrl;
@@ -39,7 +37,7 @@
         }, 8000);
 
         document.addEventListener("visibilitychange", function () {
-            if (!installed) {
+            if (!installed && !ban) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
