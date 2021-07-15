@@ -11,19 +11,26 @@
     var launchAppUrl = 'naversearchapp://'; // 앱 스키마
     var timer;	// 타이머
     var schInterval; // 인터벌
+    var installed = false;
 
     function init() {
-        location.href = launchAppUrl;
+        info = setTimeout(function () {
+            location.href = launchAppUrl;
+        }, 5000);
 
         //schInterval = setInterval(intervalSch, 500);
 
         timer = setTimeout(function () {
             alert('앱이 설치되어있지 않습니다.');
             clearInterval(schInterval);
-        }, 5000);
+        }, 8000);
+        
         document.addEventListener("visibilitychange", function () {
-            clearTimer();
-            alert("앱이 설치 되어 있습니다.");
+            if(!installed) {
+                clearTimer();
+                alert("앱이 설치 되어 있습니다.");
+                installed = true;
+            }
         });
     }
 
