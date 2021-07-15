@@ -24,7 +24,7 @@
         var installed = false;
         var timer;	// 타이머
 
-        
+
         info = setTimeout(function () {
             location.href = launchAppUrl;
         }, 6000);
@@ -32,7 +32,7 @@
         //schInterval = setInterval(intervalSch, 500);
 
         timer = setTimeout(function () {
-            //alert('앱이 설치되어있지 않습니다.');
+            alert('앱이 설치되어있지 않습니다.');
             clearInterval(schInterval);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
@@ -40,8 +40,9 @@
         }, 8000);
 
         document.addEventListener("visibilitychange", function () {
+            clearTimer();
             if (!installed) {
-                clearTimer();
+                
                 alert("앱이 설치 되어 있습니다.");
                 installed = true;
                 ban = true;
