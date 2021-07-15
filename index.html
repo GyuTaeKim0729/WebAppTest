@@ -13,7 +13,7 @@
     var schInterval; // 인터벌
 
     function init() {
-        //location.href = launchAppUrl;
+        location.href = launchAppUrl;
 
         schInterval = setInterval(intervalSch, 500);
 
@@ -21,7 +21,6 @@
             alert('앱이 설치되어있지 않습니다.');
             clearInterval(schInterval);
         }, 2000);
-        clearTimeout(timer);
     }
 
     function clearTimer() {
