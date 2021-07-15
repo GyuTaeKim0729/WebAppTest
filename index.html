@@ -20,7 +20,7 @@
         timer = setTimeout(function () {
             alert('앱이 설치되어있지 않습니다.');
             clearInterval(schInterval);
-        }, 2000);
+        }, 5000);
         document.addEventListener("visibilitychange", function () {
             clearTimer();
             alert("앱이 설치 되어 있습니다.");
