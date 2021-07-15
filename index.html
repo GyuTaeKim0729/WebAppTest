@@ -14,15 +14,14 @@
     var infot;
     var left_time = 6;
     var timer;	// 타이머
-
-
+    var ban = false;
+    var installed = false;
 
     function init() {
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        var ban = false;
-        var installed = false;
+        
 
 
         info = setTimeout(function () {
