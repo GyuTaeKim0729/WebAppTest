@@ -39,7 +39,7 @@
         }, 8000);
 
         document.addEventListener("visibilitychange", function () {
-            if (!installed && !ban) {
+            if (!installed) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
