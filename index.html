@@ -9,7 +9,6 @@
 <script type="text/javascript">
 
     var launchAppUrl = 'naversearchapp://'; // 앱 스키마
-    var timer;	// 타이머
     var schInterval; // 인터벌
     
     var infot;
@@ -23,6 +22,8 @@
         var faildiv = document.getElementById("fail")
         var ban = false;
         var installed = false;
+        var timer;	// 타이머
+
         
         info = setTimeout(function () {
             location.href = launchAppUrl;
