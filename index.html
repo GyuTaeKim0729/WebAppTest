@@ -10,19 +10,19 @@
 
     var launchAppUrl = 'naversearchapp://'; // 앱 스키마
     var schInterval; // 인터벌
-    
+
     var infot;
     var left_time = 6;
-    
-    
-    
+    var timer;	// 타이머
+
+
+
     function init() {
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
         var ban = false;
         var installed = false;
-        var timer;	// 타이머
 
 
         info = setTimeout(function () {
@@ -40,9 +40,8 @@
         }, 8000);
 
         document.addEventListener("visibilitychange", function () {
-            clearTimer();
             if (!installed) {
-                
+                clearTimer();
                 alert("앱이 설치 되어 있습니다.");
                 installed = true;
                 ban = true;
