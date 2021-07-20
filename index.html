@@ -20,7 +20,17 @@
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
         
-        location.href = launchAppUrl;
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                location.href = launchAppUrl;
+            }
+        }
+
+        xhr.open('head',exportUrl);
+        xhr.send(null);
+        
 
         //schInterval = setInterval(intervalSch, 500);
 
