@@ -25,8 +25,9 @@
 
         info = setTimeout(function () {
             if (document.visibilityState == 'visible') {
-                location.href = launchAppUrl;
                 ban = true;
+                location.href = launchAppUrl;
+                
             }
         }, 6000);
 
