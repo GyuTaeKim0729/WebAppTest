@@ -27,7 +27,6 @@
             if (document.visibilityState == 'visible') {
                 ban = true;
                 location.href = launchAppUrl;
-                
             }
         }, 6000);
 
@@ -43,8 +42,12 @@
 
 
         document.addEventListener("visibilitychange", function () {
-            alert(document.visibilityState);
-            if (installed == false && ban == true) {
+            if (document.visibilityState == 'hidden') {
+                if (ban == true) {
+                    ban2 = true;
+                }
+            }
+            if (installed == false && ban2 == true) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
