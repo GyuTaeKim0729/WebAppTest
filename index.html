@@ -24,7 +24,7 @@
         var faildiv = document.getElementById("fail")
 
         info = setTimeout(function () {
-            //location.href = launchAppUrl;
+            location.href = launchAppUrl;
         }, 6000);
 
         //schInterval = setInterval(intervalSch, 500);
@@ -37,14 +37,6 @@
             ban = true;
         }, 9000);
 
-         
-
-        temp_time = setInterval(function () {
-            alert("알림");
-            if (document.webkitHidden || document.hidden) {
-                alert("가려짐");
-            }
-        }, 1000);
 
         document.addEventListener("visibilitychange", function () {
             if (!installed) {
