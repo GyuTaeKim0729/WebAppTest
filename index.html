@@ -30,12 +30,11 @@
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
-        }, 1000);
+        }, 2000);
 
 
 
         document.addEventListener("visibilitychange", function () {
-            
             if (installed == false && ban == false) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
