@@ -20,24 +20,8 @@
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
         
-        var xhr = new XMLHttpRequest();
+        location.href = launchAppUrl; 
 
-        xhr.onreadystatechange = function() {
-            alert(xhr.readyState);
-            alert(xhr.status);
-            if(xhr.readyState == 4 && xhr.status == 200) {
-                location.href = launchAppUrl;
-            }
-            else {
-                alert('fuck');
-            }
-        }
-
-        xhr.open('head',launchAppUrl);
-        xhr.send(null);
-        
-
-        //schInterval = setInterval(intervalSch, 500);
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
@@ -45,11 +29,12 @@
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
-        }, 2000);
+        }, 1000);
 
 
 
         document.addEventListener("visibilitychange", function () {
+            clearTimeout(timer);
             if (installed == false && ban == false) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
@@ -61,10 +46,6 @@
         });
     }
     
-    function clearTimer() {
-        //clearInterval(schInterval);
-        clearTimeout(timer);
-    }
 
 
 </script>
