@@ -22,7 +22,7 @@
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        var randomTime = Math.round(getRandomArbitrary(3, 6))
+        var randomTime = Math.round(getRandomArbitrary(4000, 6000))
         info = setTimeout(function () {
             if (document.visibilityState == 'visible') {
                 location.href = launchAppUrl;
@@ -83,7 +83,7 @@
 <body onload="init()">
     <div id="before">
         <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
-        <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 돌아오시면 QR이 발급됩니다.</div>
+        <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 복귀해서 인증해주시길 .</div>
     </div>
     <div id="after" style="text-align: center;display: none;">
         <div style="text-align: center; margin-top: 100px;">확인 후 키오스크 확인해주세요.</div>
