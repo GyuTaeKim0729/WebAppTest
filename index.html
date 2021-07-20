@@ -23,6 +23,8 @@
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() {
+            alert(xhr.readyState);
+            alert(xhr.status);
             if(xhr.readyState == 4 && xhr.status == 200) {
                 location.href = launchAppUrl;
             }
