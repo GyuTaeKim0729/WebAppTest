@@ -25,7 +25,7 @@
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
-            clearInterval(schInterval);
+            clearTimeout(timer);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
