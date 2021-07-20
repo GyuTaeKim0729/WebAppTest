@@ -15,6 +15,7 @@
     var left_time = 6;
     var timer;	// 타이머
     var ban = false;
+    var ban2 = false;
     var installed = false;
 
     function init() {
@@ -41,6 +42,13 @@
 
 
         document.addEventListener("visibilitychange", function () {
+            if (ban2 == false){
+                ban2 = true;
+            }
+            else if (ban2 = true){
+                ban == true
+            }
+            
             if (installed == false && ban == true) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
@@ -92,9 +100,7 @@
     </div>
     <div id="after" style="text-align: center;display: none;">
         <div style="text-align: center; margin-top: 100px;">QR을 키오스크에 인식해주세요.</div>
-        <img style="height: 100px; width: 100px;"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-            alt="">
+        <button>PUSH</button>
     </div>
     <div id="fail" style="display: none;">
         <div style="text-align: center; margin-top: 100px;">어플 설치가 되어있지 않습니다.</div>
