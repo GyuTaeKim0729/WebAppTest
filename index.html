@@ -22,13 +22,13 @@
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-
+        var randomTime = Math.round(getRandomArbitrary(3, 6))
         info = setTimeout(function () {
             if (document.visibilityState == 'visible') {
                 location.href = launchAppUrl;
                 ban = true;
             }
-        }, 6000);
+        }, randomTime);
 
         //schInterval = setInterval(intervalSch, 500);
 
@@ -56,21 +56,12 @@
                 faildiv.style.display = "none";
             }
         });
-        infoTimer();
     }
 
-    function infoTimer() {
-        infot = setInterval(function () {
-            left_time--;
-            document.getElementById("infoTime").innerHTML = left_time + "초"
-            if (left_time == 0) {
-                clearInterval(infot);
-                document.getElementById("infoTime").innerHTML = "어플 실행"
-            }
-        }, 1000);
-
+    function getRandomArbitrary(min, max) {
+      return Math.random() * (max - min) + min;
     }
-
+    
     function clearTimer() {
         //clearInterval(schInterval);
         clearTimeout(timer);
@@ -93,7 +84,6 @@
     <div id="before">
         <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
         <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 돌아오시면 QR이 발급됩니다.</div>
-        <div style="text-align: center;margin-top: 100px; font-size:50px;" id="infoTime"></div>
     </div>
     <div id="after" style="text-align: center;display: none;">
         <div style="text-align: center; margin-top: 100px;">확인 후 키오스크 확인해주세요.</div>
