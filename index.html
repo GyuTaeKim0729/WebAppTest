@@ -8,14 +8,11 @@
 </head>
 <script type="text/javascript">
 
-    var launchAppUrl = 'kakaotalk://'; // 앱 스키마
+    var launchAppUrl = 'YouTube://'; // 앱 스키마
     var schInterval; // 인터벌
 
-    var infot;
-    var left_time = 6;
     var timer;	// 타이머
     var ban = false;
-    var ban2 = false;
     var installed = false;
 
     function init() {
@@ -32,13 +29,14 @@
             clearInterval(schInterval);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
+            ban = true;
         }, 2000);
 
 
 
         document.addEventListener("visibilitychange", function () {
            
-            if (installed == false) {
+            if (installed == false && ban == true) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
