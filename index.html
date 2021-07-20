@@ -16,7 +16,7 @@
     var timer;	// 타이머
     var ban = false;
     var installed = false;
-    var temp_time;
+    
 
     function init() {
         var beforediv = document.getElementById("before")
@@ -24,6 +24,7 @@
         var faildiv = document.getElementById("fail")
 
         info = setTimeout(function () {
+            ban = true;
             location.href = launchAppUrl;
         }, 6000);
 
@@ -34,16 +35,15 @@
             clearInterval(schInterval);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
-            ban = true;
+            ban = false;
         }, 9000);
 
 
         document.addEventListener("visibilitychange", function () {
-            if (!installed) {
+            if (!installed && ban) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
-                ban = true;
                 beforediv.style.display = "none";
                 afterdiv.style.display = "block";
                 faildiv.style.display = "none";
