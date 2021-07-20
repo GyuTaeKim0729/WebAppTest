@@ -8,7 +8,7 @@
 </head>
 <script type="text/javascript">
 
-    var launchAppUrl = 'naversearchappa://'; // 앱 스키마
+    var launchAppUrl = 'kakaotalk://'; // 앱 스키마
     var schInterval; // 인터벌
 
     var infot;
@@ -22,13 +22,8 @@
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        var randomTime = Math.round(getRandomArbitrary(4000, 6000))
-        info = setTimeout(function () {
-            if (document.visibilityState == 'visible') {
-                location.href = launchAppUrl;
-                ban = true;
-            }
-        }, randomTime);
+        
+        location.href = launchAppUrl;
 
         //schInterval = setInterval(intervalSch, 500);
 
@@ -37,17 +32,13 @@
             clearInterval(schInterval);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
-        }, 9000);
+        }, 2000);
 
 
 
         document.addEventListener("visibilitychange", function () {
-            if (document.visibilityState == 'hidden') {
-                if (ban == true) {
-                    ban2 = true;
-                }
-            }
-            if (installed == false && ban2 == true) {
+           
+            if (installed == false) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
@@ -57,24 +48,10 @@
             }
         });
     }
-
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
     
     function clearTimer() {
         //clearInterval(schInterval);
         clearTimeout(timer);
-    }
-
-    function intervalSch() {
-        // 매 인터벌 마다 웹뷰가 활성화 인지 체크
-        if (document.webkitHidden || document.hidden) {// 웹뷰 비활성화
-            clearTimer();// 앱이 설치되어있을 경우 타이머 제거
-            //alert("앱이 설치 되어 있습니다.");
-        } else {	// 웹뷰 활성화
-            console.log("타이머 동작");
-        }
     }
 
 
