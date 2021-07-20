@@ -14,9 +14,8 @@
     var infot;
     var left_time = 6;
     var timer;	// 타이머
-    var ban = true;
+    var ban = false;
     var installed = false;
-    
 
     function init() {
         var beforediv = document.getElementById("before")
@@ -24,8 +23,8 @@
         var faildiv = document.getElementById("fail")
 
         info = setTimeout(function () {
-            ban = true;
-            location.href = launchAppUrl;
+            alert(document.visibilityState);
+            //location.href = launchAppUrl;
         }, 6000);
 
         //schInterval = setInterval(intervalSch, 500);
@@ -35,18 +34,21 @@
             clearInterval(schInterval);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
-            ban = false;
-        }, 7000);
+            ban = true;
+        }, 9000);
+
 
 
         document.addEventListener("visibilitychange", function () {
-            if (!installed && ban) {
+            if (!installed) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
                 installed = true;
+                ban = true;
                 beforediv.style.display = "none";
                 afterdiv.style.display = "block";
                 faildiv.style.display = "none";
+                
             }
         });
         infoTimer();
