@@ -26,6 +26,7 @@
         info = setTimeout(function () {
             if (document.visibilityState == 'visible') {
                 location.href = launchAppUrl;
+                ban = true;
             }
         }, 6000);
 
@@ -41,13 +42,6 @@
 
 
         document.addEventListener("visibilitychange", function () {
-            if (ban2 == false){
-                ban2 = true;
-            }
-            else if (ban2 = true){
-                ban == true
-            }
-            
             if (installed == false && ban == true) {
                 clearTimer();
                 //alert("앱이 설치 되어 있습니다.");
@@ -98,8 +92,8 @@
         <div style="text-align: center;margin-top: 100px; font-size:50px;" id="infoTime"></div>
     </div>
     <div id="after" style="text-align: center;display: none;">
-        <div style="text-align: center; margin-top: 100px;">QR을 키오스크에 인식해주세요.</div>
-        <button>PUSH</button>
+        <div style="text-align: center; margin-top: 100px;">확인 후 키오스크 확인해주세요.</div>
+        <button style="margin-top: 100px;>PUSH</button>
     </div>
     <div id="fail" style="display: none;">
         <div style="text-align: center; margin-top: 100px;">어플 설치가 되어있지 않습니다.</div>
