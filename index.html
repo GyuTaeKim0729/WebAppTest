@@ -16,11 +16,15 @@
     var installed = false;
     var check_timer;
 
+    var beforediv;
+    var afterdiv;
+    var faildiv;
+
     function init() {
                 
-        var beforediv = document.getElementById("before")
-        var afterdiv = document.getElementById("after")
-        var faildiv = document.getElementById("fail")
+        beforediv = document.getElementById("before")
+        afterdiv = document.getElementById("after")
+        faildiv = document.getElementById("fail")
 
         location.href = launchAppUrl;
 
@@ -31,7 +35,7 @@
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
-        }, 500);
+        }, 2000);
 
 
         /*
@@ -47,12 +51,10 @@
             }
         });
         */
-        
     }
-
+    
     function check() {
         if (document.webkitHidden || document.hidden) {
-            alert("hidden");
             clear();
             beforediv.style.display = "none";
             afterdiv.style.display = "block";
@@ -73,7 +75,7 @@
 
 <body onload="init()">
     <div id="before">
-        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.1</div>
+        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
         <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 복귀해서 인증해주시길 .</div>
     </div>
     <div id="after" style="text-align: center;display: none;">
