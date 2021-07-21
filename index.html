@@ -21,14 +21,14 @@
     var faildiv;
 
     function init() {
-                
+
         beforediv = document.getElementById("before")
         afterdiv = document.getElementById("after")
         faildiv = document.getElementById("fail")
 
         location.href = launchAppUrl;
 
-        check_timer = setInterval(check,100);
+        check_timer = setInterval(check, 100);
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
@@ -36,7 +36,7 @@
             faildiv.style.display = "block";
             ban = true;
             clear();
-        }, 500);
+        }, 1500);
 
 
         /*
@@ -53,7 +53,12 @@
         });
         */
     }
-    
+
+    function clear() {
+        clearTimeout(timer);
+        clearInterval(check_timer);
+    }
+
     function check() {
         if (document.webkitHidden || document.hidden) {
             clear();
@@ -63,11 +68,8 @@
         }
     }
 
-    function clear() {
-        clearTimeout(timer);
-        clearInterval(check_timer);
-    }
-    
+
+
 
 
 </script>
