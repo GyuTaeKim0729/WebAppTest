@@ -6,72 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>앱 설치 테스트</title>
 </head>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
     var launchAppUrl = 'YouTube://'; // 앱 스키마
     var schInterval; // 인터벌
+
     var timer;	// 타이머
     var ban = false;
     var installed = false;
-    var check_timer;
-    var check_timer2;
-    var check_value = false;
-
-    var beforediv;
-    var afterdiv;
-    var faildiv;
-
+    var ttt = false;
+    var ti;
 
     function init() {
+        var beforediv = document.getElementById("before")
+        var afterdiv = document.getElementById("after")
+        var faildiv = document.getElementById("fail")
 
-        beforediv = document.getElementById("before")
-        afterdiv = document.getElementById("after")
-        faildiv = document.getElementById("fail")
+        //location.href = launchAppUrl;
 
-        location.href = launchAppUrl;
 
-        check_timer = setInterval(check, 200);
+        timer = setTimeout(function () {
+            //alert('앱이 설치되어있지 않습니다.');
+            alert(ttt);
+            clearTimeout(timer);
+            beforediv.style.display = "none";
+            faildiv.style.display = "block";
+            ban = true;
+        }, 500);
 
-        check_timer2 = setTimeout(function () {
-            if (check_value == true) {
+
+
+        document.addEventListener("visibilitychange", function () {
+            clearTimeout(timer);
+            ttt = true;
+            
+            if (installed == false && ban == false) {
+                clearTimeout(timer);
+                
+                //alert("앱이 설치 되어 있습니다.");
+                installed = true;
                 beforediv.style.display = "none";
                 afterdiv.style.display = "block";
                 faildiv.style.display = "none";
             }
-            alert(check_value);
-        }, 1000)
-
-        timer = setTimeout(function () {
-            //alert('앱이 설치되어있지 않습니다.');
-            if (check_value == false) {
-                beforediv.style.display = "none";
-                faildiv.style.display = "block";
-            }
-            
-            ban = true;
-        }, 500);
+        });
     }
 
-    function clear() {
-        clearInterval(check_timer);
-    }
-
-    function check() {
-        if (document.webkitHidden || document.hidden) {
-            check_value = true;
-            clear();
-        }
-    }
 
 
 </script>
 
-
-
 <body onload="init()">
     <div id="before">
-        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.3</div>
+        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
         <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 복귀해서 인증해주시길 .</div>
     </div>
     <div id="after" style="text-align: center;display: none;">
