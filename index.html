@@ -27,14 +27,17 @@
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
-            alert(ttt);
             clearTimeout(timer);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
         }, 500);
 
-
+        ti = setTimeout(function () {
+            //alert('앱이 설치되어있지 않습니다.');
+            alert(ttt);
+            
+        }, 1000);
 
         document.addEventListener("visibilitychange", function () {
             clearTimeout(timer);
