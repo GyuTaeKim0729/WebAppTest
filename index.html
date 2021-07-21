@@ -43,8 +43,11 @@
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
-            beforediv.style.display = "none";
-            faildiv.style.display = "block";
+            if (check_value == false) {
+                beforediv.style.display = "none";
+                faildiv.style.display = "block";
+            }
+            
             ban = true;
         }, 500);
     }
