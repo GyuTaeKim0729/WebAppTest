@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>앱 설치 테스트</title>
 </head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
     var launchAppUrl = 'YouTubea://'; // 앱 스키마
@@ -14,14 +15,14 @@
     var timer;	// 타이머
     var ban = false;
     var installed = false;
-
+    $(document).ready(function(){
+        location.href = launchAppUrl;
+    })
     function init() {
+                
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        
-        location.href = launchAppUrl; 
-
 
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
@@ -29,7 +30,7 @@
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
-        }, 100);
+        }, 500);
 
 
 
@@ -49,6 +50,8 @@
 
 
 </script>
+
+
 
 <body onload="init()">
     <div id="before">
