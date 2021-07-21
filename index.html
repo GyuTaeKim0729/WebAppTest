@@ -22,7 +22,7 @@
     var afterdiv;
     var faildiv;
 
-    
+
     function init() {
 
         beforediv = document.getElementById("before")
@@ -32,7 +32,13 @@
         location.href = launchAppUrl;
 
         check_timer = setInterval(check, 100);
-        check_timer2 = setInterval(check2, 100);
+        check_timer2 = setTimeout(function () {
+            if (check_value) {
+                beforediv.style.display = "none";
+                afterdiv.style.display = "block";
+                faildiv.style.display = "none";
+            }
+        }, 1000)
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
             beforediv.style.display = "none";
@@ -43,7 +49,6 @@
     }
 
     function clear() {
-        clearTimeout(timer);
         clearInterval(check_timer);
     }
 
@@ -53,19 +58,6 @@
             clear();
         }
     }
-
-    function check2() {
-        if (check_value) {
-            beforediv.style.display = "none";
-            afterdiv.style.display = "block";
-            faildiv.style.display = "none";
-            clearInterval(check_timer2);
-        }
-        
-    }
-
-
-
 
 
 </script>
