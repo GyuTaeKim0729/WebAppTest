@@ -22,11 +22,7 @@
     var afterdiv;
     var faildiv;
 
-    $(document).ready(function(){
-        if (document.webkitHidden || document.hidden) {
-            check_value = true;
-        }
-    })
+    
     function init() {
 
         beforediv = document.getElementById("before")
@@ -35,7 +31,7 @@
 
         location.href = launchAppUrl;
 
-        //check_timer = setInterval(check, 100);
+        check_timer = setInterval(check, 100);
         check_timer2 = setInterval(check2, 100);
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
@@ -49,7 +45,6 @@
     function clear() {
         clearTimeout(timer);
         clearInterval(check_timer);
-        clearInterval(check_timer2);
     }
 
     function check() {
