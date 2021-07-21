@@ -25,9 +25,10 @@
 
         timer_ban = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
-            clearTimeout(timer_ban);
-            beforediv.style.display = "none";
-            faildiv.style.display = "block";
+            if (document.visibilityState == 'visible'){
+                beforediv.style.display = "none";
+                faildiv.style.display = "block";
+            }
         }, 300);
 
         timer_result = setTimeout(function () {
