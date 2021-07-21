@@ -8,14 +8,12 @@
 </head>
 <script type="text/javascript">
 
-    var launchAppUrl = 'YouTubea://'; // 앱 스키마
+    var launchAppUrl = 'YouTube://'; // 앱 스키마
     var schInterval; // 인터벌
 
-    var timer;	// 타이머
-    var ban = false;
+    var timer_ban;	// 타이머
     var installed = false;
-    var ttt = false;
-    var ti;
+    var timer_result;
 
     function init() {
         var beforediv = document.getElementById("before")
@@ -25,33 +23,23 @@
         location.href = launchAppUrl;
 
 
-        timer = setTimeout(function () {
+        timer_ban = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
-            clearTimeout(timer);
+            clearTimeout(timer_ban);
             beforediv.style.display = "none";
             faildiv.style.display = "block";
-            ban = true;
-        }, 500);
+        }, 300);
 
-        ti = setTimeout(function () {
-            //alert('앱이 설치되어있지 않습니다.');
-            alert(ttt);
-            
-        }, 1000);
-
-        document.addEventListener("visibilitychange", function () {
-            clearTimeout(timer);
-            ttt = true;
-            
-            if (installed == false && ban == false) {
-                clearTimeout(timer);
-                
-                //alert("앱이 설치 되어 있습니다.");
-                installed = true;
+        timer_result = setTimeout(function () {
+            if (installed == true) {
                 beforediv.style.display = "none";
                 afterdiv.style.display = "block";
                 faildiv.style.display = "none";
             }
+        }, 1000);
+
+        document.addEventListener("visibilitychange", function () {
+            installed = true;
         });
     }
 
