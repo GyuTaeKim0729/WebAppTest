@@ -14,8 +14,27 @@
     var timer;	// 타이머
     var ban = false;
     var installed = false;
+    var check_timer;
 
-    $(document).ready(function(){
+    function init() {
+                
+        var beforediv = document.getElementById("before")
+        var afterdiv = document.getElementById("after")
+        var faildiv = document.getElementById("fail")
+
+        //location.href = launchAppUrl;
+
+        check_timer = setInterval(check,200);
+
+        timer = setTimeout(function () {
+            //alert('앱이 설치되어있지 않습니다.');
+            beforediv.style.display = "none";
+            faildiv.style.display = "block";
+            ban = true;
+        }, 500);
+
+
+        /*
         document.addEventListener("visibilitychange", function () {
             clearTimeout(timer);
             if (installed == false && ban == false) {
@@ -27,25 +46,23 @@
                 faildiv.style.display = "none";
             }
         });
-    })
-    function init() {
-                
-        var beforediv = document.getElementById("before")
-        var afterdiv = document.getElementById("after")
-        var faildiv = document.getElementById("fail")
-
-        location.href = launchAppUrl;
-
-        timer = setTimeout(function () {
-            //alert('앱이 설치되어있지 않습니다.');
-            beforediv.style.display = "none";
-            faildiv.style.display = "block";
-            ban = true;
-        }, 500);
-
-
-
+        */
         
+    }
+
+    function check() {
+        if (document.webkitHidden || document.hidden) {
+            alert("hidden");
+            clear();
+            beforediv.style.display = "none";
+            afterdiv.style.display = "block";
+            faildiv.style.display = "none";
+        }
+    }
+
+    function clear() {
+        clearTimeout(timer);
+        clearInterval(check_timer);
     }
     
 
@@ -56,7 +73,7 @@
 
 <body onload="init()">
     <div id="before">
-        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.3</div>
+        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
         <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 복귀해서 인증해주시길 .</div>
     </div>
     <div id="after" style="text-align: center;display: none;">
