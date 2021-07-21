@@ -30,15 +30,15 @@
 
         location.href = launchAppUrl;
 
-        check_timer = setInterval(check, 200);
-        check_timer2 = setInterval(check2, 200);
+        check_timer = setInterval(check, 10);
+        check_timer2 = setInterval(check2, 10);
         timer = setTimeout(function () {
             //alert('앱이 설치되어있지 않습니다.');
             beforediv.style.display = "none";
             faildiv.style.display = "block";
             ban = true;
             clear();
-        }, 500);
+        }, 100);
     }
 
     function clear() {
@@ -48,8 +48,8 @@
 
     function check() {
         if (document.webkitHidden || document.hidden) {
-            clear();
             check_value = true;
+            clear();
         }
     }
 
