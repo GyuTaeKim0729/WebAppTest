@@ -22,7 +22,7 @@
         var beforediv = document.getElementById("before")
         var afterdiv = document.getElementById("after")
         var faildiv = document.getElementById("fail")
-        location.replace(launchAppUrl);
+        location.href = launchAppUrl;
         check_timer = setInterval(check, 10);
 
         /*
@@ -42,7 +42,7 @@
                 faildiv.style.display = "block";
                 alert("out");
             }
-        }, 200);
+        }, 1000);
 
         timer_result = setTimeout(function () {
             if (installed == true) {
@@ -50,7 +50,7 @@
                 afterdiv.style.display = "block";
                 faildiv.style.display = "none";
             }
-        }, 300);
+        }, 1500);
 
 
     }
