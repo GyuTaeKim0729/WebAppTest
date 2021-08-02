@@ -1,4 +1,67 @@
-<html>
-<meta http-equiv="refresh" content="0; url=https://naver.com">
-</meta>
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>앱 설치 테스트</title>
+</head>
+<script type="text/javascript">
+
+    var launchAppUrl = 'YouTube://'; // 앱 스키마
+    var schInterval; // 인터벌
+
+    var timer_ban;	// 타이머
+    var installed = false;
+    var timer_result;
+
+    function init() {
+        var beforediv = document.getElementById("before")
+        var afterdiv = document.getElementById("after")
+        var faildiv = document.getElementById("fail")
+
+        location.href = launchAppUrl;
+
+        document.addEventListener("visibilitychange", function () {
+            installed = true;
+        });
+
+        timer_ban = setTimeout(function () {
+            //alert('앱이 설치되어있지 않습니다.');
+            if (document.visibilityState == 'visible'){
+                beforediv.style.display = "none";
+                faildiv.style.display = "block";
+            }
+        }, 100);
+
+        timer_result = setTimeout(function () {
+            if (installed == true) {
+                beforediv.style.display = "none";
+                afterdiv.style.display = "block";
+                faildiv.style.display = "none";
+            }
+        }, 1000);
+
+        
+    }
+
+
+
+</script>
+
+<body onload="init()">
+    <div id="before">
+        <div style="text-align: center; margin-top: 100px;">잠시후 어플이 실행됩니다.</div>
+        <div style="text-align: center; margin-top: 30px;">실행 종료 후 여기로 다시 복귀해서 인증해주시길 .</div>
+    </div>
+    <div id="after" style="text-align: center;display: none;">
+        <div style="text-align: center; margin-top: 100px;">확인 후 키오스크 확인해주세요.</div>
+        <button>PUSH</button>
+    </div>
+    <div id="fail" style="display: none;">
+        <div style="text-align: center; margin-top: 100px;">어플 설치가 되어있지 않습니다.</div>
+        <div style="text-align: center; margin-top: 30px;">설치 후 다시 시도해주세요.</div>
+    </div>
+</body>
+
 </html>
